@@ -1,0 +1,12 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="eipnsh主計系統小幫手" Manufacturer="AutoEipnsh" Version="1.0.0" UpgradeCode="40FB80ED-8C11-4FDA-8AA8-2026C9623401" Scope="perUser">
+    <MajorUpgrade DowngradeErrorMessage="已安裝較新版本。" />
+    <MediaTemplate EmbedCab="yes" />
+    <Icon Id="AppIcon" SourceFile="icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon" />
+    <StandardDirectory Id="LocalAppDataFolder"><Directory Id="INSTALLFOLDER" Name="AutoEipnsh"><Component Id="AppFiles" Guid="*"><File Id="AppExe" Source="dist\AutoEipnsh.exe" KeyPath="yes" /></Component></Directory></StandardDirectory>
+    <StandardDirectory Id="DesktopFolder"><Component Id="DesktopShortcut" Guid="*"><Shortcut Id="DesktopLink" Name="eipnsh主計系統小幫手" Target="[INSTALLFOLDER]AutoEipnsh.exe" WorkingDirectory="INSTALLFOLDER" Icon="AppIcon"/><RegistryValue Root="HKCU" Key="Software\AutoEipnsh" Name="Desktop" Type="integer" Value="1" KeyPath="yes"/></Component></StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder"><Directory Id="MenuFolder" Name="AutoEipnsh"><Component Id="MenuShortcut" Guid="*"><Shortcut Id="MenuLink" Name="eipnsh主計系統小幫手" Target="[INSTALLFOLDER]AutoEipnsh.exe" WorkingDirectory="INSTALLFOLDER" Icon="AppIcon"/><RemoveFolder Id="RemoveMenu" On="uninstall"/><RegistryValue Root="HKCU" Key="Software\AutoEipnsh" Name="Menu" Type="integer" Value="1" KeyPath="yes"/></Component></Directory></StandardDirectory>
+    <Feature Id="Main"><ComponentRef Id="AppFiles"/><ComponentRef Id="DesktopShortcut"/><ComponentRef Id="MenuShortcut"/></Feature>
+  </Package>
+</Wix>
