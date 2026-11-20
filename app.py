@@ -12,14 +12,14 @@ import webbrowser
 import tkinter as tk
 from tkinter import messagebox, ttk
 
-from selenium import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver as ChromeDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 URL = 'https://eipnsh.k12ea.gov.tw/'
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 RELEASE = 'https://github.com/funny4875/AutoEipnsh/releases/latest'
 
 
@@ -194,7 +194,7 @@ class App:
     def open_browser(self, item):
         try:
             if self.driver is None:
-                self.driver = webdriver.Chrome()
+                self.driver = ChromeDriver()
             self.driver.get(URL)
             wait = WebDriverWait(self.driver, 20)
             school = wait.until(EC.element_to_be_clickable((By.ID, 'SchoolName')))
@@ -223,9 +223,10 @@ class App:
                 self.root.after(0, self.status.set, '已按下登入，請查看網頁結果。')
             except Exception:
                 self.root.after(0, self.status.set, '帳密已填入，但驗證碼辨識失敗，請手動輸入。')
-        except Exception:
+        except Exception as exc:
             self.driver = None
-            self.root.after(0, self.status.set, '開啟或填入失敗。請確認 Chrome 與網路正常後重試。')
+            detail = str(exc).splitlines()[0] if str(exc) else type(exc).__name__
+            self.root.after(0, self.status.set, '開啟或填入失敗：' + detail)
 
 
 if __name__ == '__main__':

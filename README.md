@@ -1,4 +1,4 @@
-# eipnsh主計系統小幫手 v1.0.0
+# eipnsh主計系統小幫手 v1.0.1
 
 Windows 桌面程式，參考 ClickPilot 的 Selenium／ChromeDriver，可管理多位使用者及學校代碼，並以 OCR 辨識驗證碼後嘗試登入。
 
