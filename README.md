@@ -1,8 +1,12 @@
 # eipnsh主計系統小幫手 v1.0.0
 
-Windows Python 桌面程式，參考 ClickPilot 的 Selenium／ChromeDriver 與附檔欄位。可管理多位使用者及學校代碼，選擇後開啟 Chrome 並填入資料。請確認學校，手動輸入驗證碼並登入。
+Windows 桌面程式，參考 ClickPilot 的 Selenium／ChromeDriver，可管理多位使用者及學校代碼，並以 OCR 辨識驗證碼後嘗試登入。
 
-## 執行
+## 安裝
+
+從 [Release](https://github.com/funny4875/AutoEipnsh/releases/latest) 下載 MSI 安裝。安裝後可從桌面或開始功能表開啟，需安裝 Google Chrome。每次啟動會檢查新版，發現新版時詢問是否開啟下載頁；離線時仍可使用。安裝檔未經數位簽章。
+
+## 從原始碼執行
 
 需安裝 Windows、Python 3.10 以上及 Google Chrome。解壓縮後在本資料夾開啟 PowerShell：
 
