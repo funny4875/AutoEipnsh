@@ -1,5 +1,5 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="eipnsh主計系統小幫手" Manufacturer="AutoEipnsh" Version="1.0.1" UpgradeCode="40FB80ED-8C11-4FDA-8AA8-2026C9623401" Scope="perUser">
+  <Package Name="eipnsh主計系統小幫手" Manufacturer="AutoEipnsh" Version="1.0.2" UpgradeCode="40FB80ED-8C11-4FDA-8AA8-2026C9623401" Scope="perUser">
     <MajorUpgrade DowngradeErrorMessage="已安裝較新版本。" />
     <MediaTemplate EmbedCab="yes" />
     <Icon Id="AppIcon" SourceFile="icon.ico" />

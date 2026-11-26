@@ -19,7 +19,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 URL = 'https://eipnsh.k12ea.gov.tw/'
-VERSION = '1.0.1'
+VERSION = '1.0.2'
 RELEASE = 'https://github.com/funny4875/AutoEipnsh/releases/latest'
 
 
@@ -220,9 +220,17 @@ class App:
                 self.root.after(0, self.status.set, '已填入資料，等待 1 秒後登入……')
                 time.sleep(1)
                 wait.until(EC.element_to_be_clickable((By.ID, 'Send'))).click()
-                self.root.after(0, self.status.set, '已按下登入，請查看網頁結果。')
+                self.root.after(0, self.status.set, '已按下登入，等待登入成功……')
             except Exception:
-                self.root.after(0, self.status.set, '帳密已填入，但驗證碼辨識失敗，請手動輸入。')
+                self.root.after(0, self.status.set, '驗證碼辨識或登入操作失敗，請手動完成登入。')
+            try:
+                button = WebDriverWait(self.driver, 300).until(
+                    EC.element_to_be_clickable((By.XPATH, '//*[@id="APY"]/div/span[1]'))
+                )
+                button.click()
+                self.root.after(0, self.status.set, '登入成功，已點選指定按鈕。')
+            except Exception:
+                self.root.after(0, self.status.set, '等待登入或點選按鈕逾時，請查看網頁並手動操作。')
         except Exception as exc:
             self.driver = None
             detail = str(exc).splitlines()[0] if str(exc) else type(exc).__name__
